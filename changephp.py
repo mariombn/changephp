@@ -9,24 +9,24 @@ output = subprocess.check_output(["php", "-v"]);
 phpOld = output[4:7]
 phpNew = sys.argv[1]
 
-print("De " + phpOld + " para: " + phpNew)
+print("From: " + phpOld + " To: " + phpNew)
 
-print("Iniciando troca de versão do PHP")
+print("Starting PHP Version Switching")
 print
 
-print("Desativando php" + phpOld)
+print("Disabling php" + phpOld)
 os.system("sudo a2dismod php" + phpOld)
 
-print("Ativando php" + phpNew)
+print("Activating php" + phpNew)
 os.system("sudo a2enmod php" + phpNew)
 
-print("Devifindo Atralho do PHP")
+print("Defining PHP shortcuts")
 os.system("sudo update-alternatives --set php /usr/bin/php" + phpNew)
 
-print("Reiniciando o Apache")
+print("Restart Apache")
 os.system("sudo systemctl restart apache2")
 
-print("Carregando arquivo de Configuração do PHP")
+print("Loading Configuration PHP Files")
 os.system("php -i | grep \"Loaded Configuration File\"")
 
 print
